@@ -21,7 +21,7 @@ For more information on how Sylius works, please read all the [documentation](ht
 2. Clone Sylius-Standard repository
 
     ```bash
-    $ git clone git@github.com:Sylius/Sylius-Standard.git sylius
+    $ git clone https://github.com/Sylius/Sylius-Standard.git sylius
     ```
 
 3. Run Docker's containers
@@ -35,14 +35,21 @@ For more information on how Sylius works, please read all the [documentation](ht
     ```bash
     $ docker-compose run --rm php composer install
     ```
+   
+5. Replace `sylius/.env` file database connection to:
 
-5. Install Sylius
+    ```dotenv
+    DATABASE_URL=mysql://root:sylius@db/sylius_%kernel.environment%
+    ``` 
+    , where `root:sylius` is dbuser:password, `sylius_%kernel.environment%` is database name.
+
+6. Install Sylius
 
     ```bash
     $ docker-compose run --rm php bin/console sylius:install
     ```
 
-6. Install and build assets vendors
+7. Install and build assets vendors
 
     ```bash
     $ docker-compose run --rm node yarn install
